@@ -97,4 +97,33 @@ class Response extends AbstractResponse
 
         return null;
     }
+
+    /**
+     * @return null|string
+     */
+    public function getBallanceTransaction()
+    {
+        if (isset($this->data['object']) && 'charge' === $this->data['object']) {
+            return $this->data['balance_transaction'];
+        }
+
+        return null;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStripeFee()
+    {
+
+        if (isset($this->data['fee_details'])) {
+            foreach ($this->data['fee_details'] as $fee) {
+                if ('stripe_fee' === $fee['type']) {
+                    return $fee['amount'];
+                }
+            }
+        }
+
+        return null;
+    }
 }

@@ -80,7 +80,7 @@ class AuthorizeRequest extends AbstractRequest
     }
 
     /**
-     * @return mixedgi
+     * @return mixed
      */
     public function getSource()
     {

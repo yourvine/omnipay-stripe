@@ -15,6 +15,7 @@ class ResponseTest extends TestCase
         $this->assertFalse($response->isRedirect());
         $this->assertSame('ch_1IU9gcUiNASROd', $response->getTransactionReference());
         $this->assertNull($response->getCardReference());
+        $this->assertEquals('txn_1234V3FBPiYqm8LslUaSabcd', $response->getBallanceTransaction());
         $this->assertNull($response->getMessage());
     }
 
@@ -101,4 +102,16 @@ class ResponseTest extends TestCase
         $this->assertNull($response->getCardReference());
         $this->assertSame('No such customer: cus_1MZeNih5LdKxDq', $response->getMessage());
     }
+
+    public function testBalanceTransactionSuccess()
+    {
+        $httpResponse = $this->getMockHttpResponse('FetchBalanceTransactionSuccess.txt');
+        $response = new Response($this->getMockRequest(), $httpResponse->json());
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertEquals(342, $response->getStripeFee());
+        $this->assertNull($response->getMessage());
+    }
+
 }
