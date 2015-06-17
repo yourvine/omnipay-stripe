@@ -93,4 +93,12 @@ class AuthorizeRequestTest extends TestCase
         $this->assertNull($response->getCardReference());
         $this->assertSame('Your card was declined', $response->getMessage());
     }
+
+    public function testDirectPayment()
+    {
+        $this->request->setHeaders(['Stripe-Account' => 'testAccountId']);
+        $data = $this->request->getData();
+
+        $this->assertSame(['Stripe-Account' => 'testAccountId'], $data['headers']);
+    }
 }

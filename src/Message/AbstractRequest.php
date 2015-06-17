@@ -111,15 +111,22 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 }
             }
         );
+        $headers = null;
+
+        if (isset($data['headers']) && is_array($data['headers'])) {
+            $headers = $data['headers'];
+            unset($data['headers']);
+        }
 
         $httpRequest = $this->httpClient->createRequest(
             $this->getHttpMethod(),
             $this->getEndpoint(),
-            null,
+            $headers,
             $data
         );
+
         $httpResponse = $httpRequest
-            ->setHeader('Authorization', 'Basic '.base64_encode($this->getApiKey().':'))
+            ->addHeader('Authorization', 'Basic '.base64_encode($this->getApiKey().':'))
             ->send();
 
         return $this->response = new Response($this, $httpResponse->json());
