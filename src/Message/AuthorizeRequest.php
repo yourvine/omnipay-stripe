@@ -80,7 +80,24 @@ class AuthorizeRequest extends AbstractRequest
     }
 
     /**
-     * @return mixedgi
+     * @return mixed
+     */
+    public function getHeaders()
+    {
+        return $this->getParameter('headers');
+    }
+
+    /**
+     * @param string $value
+     * @return AbstractRequest provides a fluent interface.
+     */
+    public function setHeaders($value)
+    {
+        return $this->setParameter('headers', $value);
+    }
+
+    /**
+     * @return mixed
      */
     public function getSource()
     {
@@ -135,6 +152,9 @@ class AuthorizeRequest extends AbstractRequest
 
         if ($this->getDestination()) {
             $data['destination'] = $this->getDestination();
+        }
+        if ($this->getHeaders()) {
+            $data['headers'] = $this->getHeaders();
         }
 
         if ($this->getApplicationFee()) {

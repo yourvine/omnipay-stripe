@@ -1,0 +1,42 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Wed, 24 Jul 2013 07:14:02 GMT
+Content-Type: application/json;charset=utf-8
+Content-Length: 1092
+Connection: keep-alive
+Access-Control-Allow-Credentials: true
+Access-Control-Max-Age: 300
+Cache-Control: no-cache, no-store
+
+{
+  "id": "txn_1623V3FBPiYqm8LslUaSdQuj",
+  "object": "balance_transaction",
+  "amount": 10742,
+  "currency": "usd",
+  "net": 10400,
+  "type": "charge",
+  "created": 1431537509,
+  "available_on": 1432080000,
+  "status": "pending",
+  "fee": 342,
+  "fee_details": [
+    {
+      "amount": 342,
+      "currency": "usd",
+      "type": "stripe_fee",
+      "description": "Stripe processing fees",
+      "application": null
+    }
+  ],
+  "source": "ch_1623V3FBPiYqm8LsWisAwddR",
+  "description": null,
+  "sourced_transfers": {
+    "object": "list",
+    "total_count": 0,
+    "has_more": false,
+    "url": "/v1/transfers?source_transaction=ch_1623V3FBPiYqm8LsWisAwddR",
+    "data": [
+
+    ]
+  }
+}
